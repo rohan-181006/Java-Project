@@ -13,11 +13,7 @@ class ATM {
     }
 
     public void depositAmount(float deposited) {
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            System.out.println();
-        }
+        Waiter.waitFor(1000);
         System.out.println("Amount Deposited Successfully!!!");
         this.balance += deposited;
     }
@@ -37,13 +33,30 @@ class ATM {
     }
 }
 
+class Waiter {
+    public static void waitFor(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (Exception e) {
+            System.out.println();
+        }
+    }
+}
+
+class InputValidator {
+
+    public static boolean isValidAmount(float amount) {
+        return amount > 0;
+    }
+}
+
 class MenuDisplay {
     private Scanner read;
-    private ATM a;
+    private ATM a = new ATM();;
+    private Waiter waitFor = new Waiter();
 
     public MenuDisplay() {
         read = new Scanner(System.in);
-        a = new ATM();
         System.out.println("Welcome to the ATM");
         System.out.println("-------------------");
     }
@@ -55,11 +68,7 @@ class MenuDisplay {
     }
 
     public void runner() {
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            System.out.println();
-        }
+        Waiter.waitFor(1000);
         System.out.println("Do you wish to continue?");
         System.out.println("Press (y) to continue or (n) to exit");
 
@@ -71,13 +80,7 @@ class MenuDisplay {
                 break;
             case 'n':
                 System.out.println("Exiting...");
-
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println();
-                }
-
+                Waiter.waitFor(1000);
                 break;
             default:
                 System.out.println("Invalid choice made");
@@ -94,11 +97,7 @@ class MenuDisplay {
 
             if (choice == 1) {
                 System.out.println("Displaying Balance....");
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println();
-                }
+                Waiter.waitFor(1000);
                 System.out.println("Your Current Balance is: Rs." + a.getBalance());
                 runner();
                 break;
@@ -108,11 +107,12 @@ class MenuDisplay {
                 System.out.println("Enter the amount to be deposited: ");
                 float depositAmount = read.nextFloat();
 
-                if (depositAmount > 0) {
-                    a.depositAmount(depositAmount);
+                if (InputValidator.isValidAmount(depositAmount)) {
+                    a.withdrawAmount(depositAmount);
                 } else {
                     System.out.println("Please enter a valid amount...");
                 }
+
                 runner();
                 break;
             }
@@ -120,33 +120,26 @@ class MenuDisplay {
             else if (choice == 3) {
                 System.out.println("Enter the amount to be withdrawn");
                 float withdrawAmount = read.nextFloat();
-                if (withdrawAmount > 0) {
-                    a.withdrawAmount(withdrawAmount);
+                if (InputValidator.isValidAmount(withdrawAmount)) {
+                    a.depositAmount(withdrawAmount);
                 } else {
                     System.out.println("Please enter a valid amount...");
                 }
+
                 runner();
                 break;
             }
 
             else if (choice == 4) {
                 System.out.println("Exiting....");
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println();
-                }
+                Waiter.waitFor(1000);
                 choiceValid = false;
                 break;
             }
 
             else {
                 System.out.println("Invalid Choice entered");
-                try {
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    System.out.println();
-                }
+                Waiter.waitFor(1000);
                 choiceValid = false;
             }
         }
