@@ -13,6 +13,11 @@ class ATM {
     }
 
     public void depositAmount(float deposited) {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            System.out.println();
+        }
         System.out.println("Amount Deposited Successfully!!!");
         this.balance += deposited;
     }
@@ -21,6 +26,11 @@ class ATM {
         if (withdrawn > balance) {
             System.out.println("Not enough balance!!!");
         } else {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println();
+            }
             System.out.println("Amount Withdrawn Successfully");
             this.balance -= withdrawn;
         }
@@ -28,8 +38,8 @@ class ATM {
 }
 
 class MenuDisplay {
-    Scanner read;
-    ATM a;
+    private Scanner read;
+    private ATM a;
 
     public MenuDisplay() {
         read = new Scanner(System.in);
@@ -45,6 +55,11 @@ class MenuDisplay {
     }
 
     public void runner() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            System.out.println();
+        }
         System.out.println("Do you wish to continue?");
         System.out.println("Press (y) to continue or (n) to exit");
 
@@ -56,6 +71,13 @@ class MenuDisplay {
                 break;
             case 'n':
                 System.out.println("Exiting...");
+
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println();
+                }
+
                 break;
             default:
                 System.out.println("Invalid choice made");
@@ -72,6 +94,11 @@ class MenuDisplay {
 
             if (choice == 1) {
                 System.out.println("Displaying Balance....");
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println();
+                }
                 System.out.println("Your Current Balance is: Rs." + a.getBalance());
                 runner();
                 break;
@@ -104,12 +131,22 @@ class MenuDisplay {
 
             else if (choice == 4) {
                 System.out.println("Exiting....");
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println();
+                }
                 choiceValid = false;
                 break;
             }
 
             else {
                 System.out.println("Invalid Choice entered");
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    System.out.println();
+                }
                 choiceValid = false;
             }
         }
