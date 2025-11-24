@@ -25,11 +25,11 @@ The project follows object-oriented programming principles and includes addition
 ## Project Structure
 
 Main.java
-│
-├── ATM → Handles balance, deposit, withdraw
-├── MenuDisplay → Displays menu and controls workflow
-├── InputValidator → Validates user inputs
-└── Waiter → Adds delay using Thread.sleep()
+│\n
+├── ATM → Handles balance, deposit, withdraw\n
+├── MenuDisplay → Displays menu and controls workflow\n
+├── InputValidator → Validates user inputs\n
+└── Waiter → Adds delay using Thread.sleep()\n
 
 
 ---
